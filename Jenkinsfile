@@ -17,17 +17,6 @@ pipeline {
                 }
             }
         }
-        stage('Push image to Hub'){
-            steps{
-                script{
-                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u tdiazsouble -p ${dockerhubpwd}'
-
-}
-                   sh 'docker push tdiazsouble/devops-integration'
-                }
-            }
-        }
         stage('Deploy to k8s'){
             steps{
                 script{
